@@ -26,12 +26,20 @@
 #include <fstream>
 #include <inttypes.h>
 #include <unistd.h>
+<<<<<<< HEAD
 #include <cutils/properties.h>
 
 #ifdef HAS_FINGERPRINT_GESTURES
 #include <fcntl.h>
 #endif
 
+=======
+
+#ifdef HAS_FINGERPRINT_GESTURES
+#include <fcntl.h>
+#endif
+
+>>>>>>> 2dcefd6 (universal9611: fingerprint: Rebase and kill Samsung's fingerprint interface)
 #define TSP_CMD_PATH "/sys/class/sec/tsp/cmd"
 #define HBM_PATH "/sys/class/lcd/panel/mask_brightness"
 
@@ -113,8 +121,11 @@ Return<bool> BiometricsFingerprint::isUdfps(uint32_t) {
 }
 
 Return<void> BiometricsFingerprint::onFingerDown(uint32_t, uint32_t, float, float) {
+<<<<<<< HEAD
     property_set("vendor.finger.down", "1");
 
+=======
+>>>>>>> 2dcefd6 (universal9611: fingerprint: Rebase and kill Samsung's fingerprint interface)
     std::thread([this]() {
         std::this_thread::sleep_for(std::chrono::milliseconds(35));
         set(HBM_PATH, "331");
@@ -168,6 +179,10 @@ Return<RequestStatus> BiometricsFingerprint::ErrorFilter(int32_t error) {
 // Translate from errors returned by traditional HAL (see fingerprint.h) to
 // HIDL-compliant FingerprintError.
 FingerprintError BiometricsFingerprint::VendorErrorFilter(int32_t error, int32_t* vendorCode) {
+<<<<<<< HEAD
+=======
+    *vendorCode = 0;
+>>>>>>> 2dcefd6 (universal9611: fingerprint: Rebase and kill Samsung's fingerprint interface)
     switch (error) {
         case FINGERPRINT_ERROR_HW_UNAVAILABLE:
             return FingerprintError::ERROR_HW_UNAVAILABLE;
@@ -249,7 +264,10 @@ Return<RequestStatus> BiometricsFingerprint::enroll(const hidl_array<uint8_t, 69
 }
 
 Return<RequestStatus> BiometricsFingerprint::postEnroll() {
+<<<<<<< HEAD
     getInstance()->onFingerUp();
+=======
+>>>>>>> 2dcefd6 (universal9611: fingerprint: Rebase and kill Samsung's fingerprint interface)
     return ErrorFilter(ss_fingerprint_post_enroll());
 }
 
@@ -259,7 +277,10 @@ Return<uint64_t> BiometricsFingerprint::getAuthenticatorId() {
 
 Return<RequestStatus> BiometricsFingerprint::cancel() {
     int32_t ret = ss_fingerprint_cancel();
+<<<<<<< HEAD
     getInstance()->onFingerUp();
+=======
+>>>>>>> 2dcefd6 (universal9611: fingerprint: Rebase and kill Samsung's fingerprint interface)
 
 #ifdef CALL_NOTIFY_ON_CANCEL
     if (ret == 0) {
@@ -430,6 +451,7 @@ void BiometricsFingerprint::notify(const fingerprint_msg_t* msg) {
                 const uint8_t* hat = reinterpret_cast<const uint8_t*>(&msg->data.authenticated.hat);
                 const hidl_vec<uint8_t> token(
                     std::vector<uint8_t>(hat, hat + sizeof(msg->data.authenticated.hat)));
+                set(HBM_PATH, "0");
                 if (!thisPtr->mClientCallback
                          ->onAuthenticated(devId, msg->data.authenticated.finger.fid,
                                            msg->data.authenticated.finger.gid, token)
