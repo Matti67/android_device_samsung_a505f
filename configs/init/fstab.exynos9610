@@ -3,7 +3,6 @@
 
 /dev/block/platform/13520000.ufs/by-name/boot           /boot             emmc    defaults                                                                                recoveryonly
 /dev/block/platform/13520000.ufs/by-name/recovery       /recovery         emmc    defaults                                                                                recoveryonly
-/dev/block/platform/13520000.ufs/by-name/vbmeta         /vbmeta           emmc    defaults                                                                                first_stage_mount
 /dev/block/platform/13520000.ufs/by-name/cache          /cache            ext4    noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic	wait,check
 /dev/block/platform/13520000.ufs/by-name/userdata       /data             f2fs    noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic	wait,check,quota,reservedsize=128M,checkpoint=fs,fileencryption=aes-256-xts
 /dev/block/platform/13520000.ufs/by-name/efs            /mnt/vendor/efs   ext4    noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic	wait,check
