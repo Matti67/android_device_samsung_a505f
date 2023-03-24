@@ -20,6 +20,9 @@ ril.clatd.                 u:object_r:vendor_radio_prop:s0
 # Media
 vendor.sys.media.target.version	u:object_r:vendor_media_prop:s0
 
+# Media
+vendor.sys.media.target.version	u:object_r:vendor_media_prop:s0
+
 # Sensors
 persist.sns.camera_light   u:object_r:vendor_sensors_prop:s0
 
