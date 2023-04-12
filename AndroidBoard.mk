@@ -28,9 +28,7 @@ $(INSTALLED_DTBIMAGE_TARGET): $(PRODUCT_OUT)/kernel $(MKDTIMG) $(AVBTOOL)
 	$(hide) $(AVBTOOL) add_hash_footer \
 	  --image $@ \
 	  --partition_size $(BOARD_DTBIMG_PARTITION_SIZE) \
-	  --partition_name dtb \
-	  --algorithm $(BOARD_AVB_ALGORITHM) \
-	  --key $(BOARD_AVB_KEY_PATH)
+	  --partition_name dtb
 
 .PHONY: dtbimage
 dtbimage: $(INSTALLED_DTBIMAGE_TARGET)
