@@ -58,5 +58,3 @@ ro.boot.wificountrycode=00
 
 # Apex
 OVERRIDE_PRODUCT_COMPRESSED_APEX := false
-
-ro.treble.enabled=
