@@ -1,8 +1,4 @@
-<<<<<<< HEAD:fingerprint/vendor.samsung.hardware.biometrics.fingerprint@3.0-service.a50.rc
-service vendor.fps_hal /vendor/bin/hw/vendor.samsung.hardware.biometrics.fingerprint@3.0-service.a50
-=======
-service vendor.fps_hal /vendor/bin/hw/android.hardware.biometrics.fingerprint@2.3-service-samsung.universal9611
->>>>>>> 2dcefd6 (universal9611: fingerprint: Rebase and kill Samsung's fingerprint interface):fingerprint/android.hardware.biometrics.fingerprint@2.3-service-samsung.universal9611.rc
+service vendor.fps_hal /vendor/bin/hw/android.hardware.biometrics.fingerprint@2.3-service-samsung.a50
     # "class hal" causes a race condition on some devices due to files created
     # in /data. As a workaround, postpone startup until later in boot once
     # /data is mounted.
