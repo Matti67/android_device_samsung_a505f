@@ -197,6 +197,7 @@ vendor/firmware/fimc_is_rta.bin
 ## RIL
 vendor/bin/cbd
 vendor/lib/libsecril-client.so
+vendor/lib/libaudio-ril.so
 vendor/lib64/libfloatingfeature.so
 vendor/lib64/libsecnativefeature.so
 vendor/lib64/libsecril-client.so
@@ -206,7 +207,7 @@ vendor/lib64/vendor.samsung.hardware.radio@2.0.so
 vendor/lib64/vendor.samsung.hardware.radio@2.1.so
 
 ## RIL - From A505XXUBS9CWA1
-vendor/bin/hw/rild|3501bc4a474ad9cf970fba283591dc7a10e60413
+vendor/bin/hw/rild|2982c9628c9f8f82ff579cdb1273baed47112dfc
 vendor/etc/plmn_delta.bin|6a826cb6a8a1d460403ab2ebccf4f0d7be546ce6
 vendor/etc/plmn_delta_attaio.bin|751a1c7105f1c03fc196689c2a71e2c69aa14e1f
 vendor/etc/plmn_delta_hktw.bin|97a5a4747e8c32d463d8f26254257309b8a03a63
