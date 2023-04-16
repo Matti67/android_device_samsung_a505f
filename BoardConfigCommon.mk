@@ -120,7 +120,6 @@ TARGET_SOC := exynos9610
 
 ## Properties
 TARGET_VENDOR_PROP += $(COMMON_PATH)/vendor.prop
-TARGET_SYSTEM_PROP += $(COMMON_PATH)/system.prop
 
 ## Recovery
 BOARD_INCLUDE_RECOVERY_DTBO := true

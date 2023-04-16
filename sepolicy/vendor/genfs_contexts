@@ -17,6 +17,7 @@ genfscon sysfs /devices/platform/10000.mif_pdata/sim/ds_detect                  
 genfscon sysfs /devices/platform/148e0000.dsim/backlight/panel/brightness                                      u:object_r:sysfs_backlight_writable:s0
 genfscon sysfs /devices/platform/148e0000.dsim/backlight/panel/max_brightness                                  u:object_r:sysfs_backlight_writable:s0
 genfscon sysfs /devices/platform/11500000.mali/dma_buf_gpu_mem                                                 u:object_r:sysfs_gpu:s0
+genfscon sysfs /devices/platform/11500000.mali/power_policy						       u:object_r:sysfs_gpu:s0
 genfscon sysfs /devices/platform/11500000.mali/total_gpu_mem                                                   u:object_r:sysfs_gpu:s0
 genfscon sysfs /devices/platform/11500000.mali/kprcs                                                           u:object_r:sysfs_gpu:s0
 genfscon sysfs /devices/platform/148e0000.dsim/lcd/panel                                                       u:object_r:sysfs_lcd_writable:s0
@@ -42,6 +43,21 @@ genfscon sysfs /module/scsc_bt/parameters/bluetooth_address                     
 
 # Kernel
 genfscon sysfs /kernel/mm/vmscan/mem_boost_mode                                                                u:object_r:sysfs_mem_boost_writable:s0
+genfscon sysfs /kernel/mm/vmscan/am_app_launch                                                                 u:object_r:sysfs_mem_boost_writable:s0
 
 # mDnie
 genfscon sysfs /devices/platform/panel/panel_drv/lcd/panel/mask_brightness				       u:object_r:sysfs_touchscreen_writable:s0
+
+# Tsp
+genfscon sysfs /devices/platform/panel/panel_drv/backlight/panel                                               u:object_r:sysfs_backlight_writable:s0
+genfscon sysfs /devices/virtual/sec/tsp/enabled                                                                u:object_r:sysfs_touchscreen_writable:s0
+genfscon sysfs /devices/platform/13870000.i2c/i2c-4/4-0048/input/input5/enabled                                u:object_r:sysfs_touchscreen_writable:s0
+
+genfscon sysfs /devices/platform/dc_vibrator/leds/vibrator/                                                    u:object_r:sysfs_leds_writable:s0
+
+genfscon sysfs /module/cpuidle/parameters/              u:object_r:sysfs_cpuidle_writable:s0
+
+# Sensors
+genfscon sysfs /devices/virtual/sec/hall_ic                                                                    u:object_r:sysfs_sensors_writable:s0
+genfscon sysfs /devices/virtual/sensors/ssp_sensor/hall_ic
+   u:object_r:sysfs_sensors_writable:s0
