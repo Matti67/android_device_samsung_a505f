@@ -89,6 +89,8 @@
 
 ## System
 /system/bin/clean_scratch_files                               u:object_r:clean_scratch_files_exec:s0
+/(vendor|system/vendor)/bin/hw/android\.hardware\.camera\.provider@[0-9]\.[0-9]-service_64\.samsung u:object_r:hal_camera_default_exec:s0
+/(vendor|system/vendor)/bin/hw/android\.hardware\.camera\.provider@[0-9]\.[0-9]-service\.samsung    u:object_r:hal_camera_default_exec:s0
 
 # sec_cmd HACK
 /sys/devices/virtual/sec/tsp/cmd[1-9]                         u:object_r:sysfs_touchscreen_writable:s0

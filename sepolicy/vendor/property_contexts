@@ -12,6 +12,7 @@ dev.gnss.                  u:object_r:vendor_gps_prop:s0
 
 # HWC
 hwc.exynos.      u:object_r:vendor_hwc_prop:s0
+hwc.exynos.vsync_mode      u:object_r:vendor_hwc_prop:s0
 
 # Radio
 ro.radio.needcalibration   u:object_r:vendor_radio_prop:s0
