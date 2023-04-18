@@ -13,7 +13,10 @@ allow hal_camera_default sysfs_mem_boost_writable:file rw_file_perms;
 
 allow hal_camera_default camera_vendor_data_file:dir search;
 allow hal_camera_default camera_vendor_data_file:file rw_file_perms;
-
+allow hal_camera_default sysfs_camera_writable:file { read };
+allow hal_camera_default sysfs_camera_writable:file { open };
+allow hal_camera_default sysfs_camera_writable:file { write };
+allow hal_camera_default sysfs_camera_writable:file { getattr };
 r_dir_file(hal_camera_default, sysfs_battery);
 
 get_prop(hal_camera_default, vendor_factory_prop);
