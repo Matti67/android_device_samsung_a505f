@@ -1,1 +1,12 @@
 allow fsck_untrusted sysfs_block:file r_file_perms;
+allow untrusted_app_30 system_file:file { lock };
+allow untrusted_app proc_net:file { read };
+allow untrusted_app mnt_vendor_file:dir { search };
+allow untrusted_app_30 proc_version:file { read };
+allow untrusted_app_30 proc_pid_max:file { read };
+allow untrusted_app_30 proc_net_tcp_udp:file { read };
+allow untrusted_app_30 proc_tty_drivers:file { read };
+allow untrusted_app_29 mnt_sdcard_file:lnk_file { read };
+allow untrusted_app_30 apk_data_file:file { setattr };
+allow untrusted_app_30 system_linker_exec:file { execmod };
+allow untrusted_app_30 anr_data_file:dir { read };

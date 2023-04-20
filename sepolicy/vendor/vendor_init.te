@@ -7,6 +7,7 @@ get_prop(vendor_init, vendor_radio_prop);
 get_prop(vendor_init, vendor_gps_prop);
 get_prop(vendor_init, vts_status_prop);
 get_prop(vendor_init, system_prop);
+get_prop(vendor_init, property_data_file) 
 
 allow vendor_init cgroup:file getattr;
 allow vendor_init tmpfs:dir { write add_name };
@@ -17,6 +18,30 @@ allow vendor_init media_rw_data_file:dir { getattr };
 allow vendor_init system_data_file:dir { read };
 allow vendor_init system_data_root_file:dir { setattr };
 allow vendor_init system_data_file:dir { setattr };
+allow vendor_init server_configurable_flags_data_file:dir { getattr };
+allow vendor_init dalvikcache_data_file:dir { getattr };
+allow vendor_init apex_data_file:dir { getattr };
+allow vendor_init anr_data_file:dir { getattr };
+allow vendor_init asec_image_file:dir { getattr };
+allow vendor_init cache_file:dir { getattr };
+allow vendor_init preloads_data_file:dir { getattr };
+allow vendor_init gsi_data_file:dir { getattr };
+allow vendor_init backup_data_file:dir { getattr };
+allow vendor_init apk_data_file:dir { getattr };
+allow vendor_init adb_data_file:dir { getattr };
+allow vendor_init ota_data_file:dir { getattr };
+allow vendor_init apk_private_data_file:dir { getattr };
+allow vendor_init tombstone_data_file:dir { getattr };
+allow vendor_init staging_data_file:dir { getattr };
+allow vendor_init media_data_file:dir { getattr };
+allow vendor_init bootchart_data_file:dir { getattr };
+allow vendor_init system_data_file:dir { open };
+allow vendor_init media_rw_data_file:dir { read };
+allow vendor_init system_data_file:dir { relabelfrom };
+allow init shell_data_file:dir { relabelfrom };
+allow init system_file:dir { relabelfrom };
+allow init system_file:file { relabelfrom };
+allow kernel system_data_file:file { read };
 allow vold vendor_file:dir { read };
 
 allow vendor_init proc_swappiness:file rw_file_perms;
