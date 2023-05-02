@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+#define LOG_TAG "android.hardware.biometrics.fingerprint@2.3-service-samsung.a505f"
+
 #include <android-base/logging.h>
 #include <hidl/HidlTransportSupport.h>
 #include <utils/Errors.h>

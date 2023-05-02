@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#define LOG_TAG "android.hardware.biometrics.fingerprint@2.3-service-samsung.a505f"
 
 #include <android-base/logging.h>
 
@@ -21,19 +22,19 @@
 #include <hardware/fingerprint.h>
 #include <hardware/hardware.h>
 #include "BiometricsFingerprint.h"
-#include "TimedRestore.h"
 #include <android-base/properties.h>
 #include <dlfcn.h>
 #include <fstream>
 #include <inttypes.h>
 #include <unistd.h>
+#include <cutils/properties.h>
 
 #ifdef HAS_FINGERPRINT_GESTURES
 #include <fcntl.h>
 #endif
 
 #define TSP_CMD_PATH "/sys/class/sec/tsp/cmd"
-#define B_PATH "/sys/class/backlight/panel/brightness"
+#define HBM_PATH "/sys/class/lcd/panel/mask_brightness"
 
 namespace android {
 namespace hardware {
@@ -46,18 +47,26 @@ using RequestStatus = android::hardware::biometrics::fingerprint::V2_1::RequestS
 
 BiometricsFingerprint* BiometricsFingerprint::sInstance = nullptr;
 
-std::shared_ptr<TimedRestore> BrightnessRestore = nullptr;
-
 template <typename T>
 static void set(const std::string& path, const T& value) {
     std::ofstream file(path);
     file << value;
 }
 
+std::string getBootloader() {
+    return android::base::GetProperty("ro.boot.bootloader", "");
+}
+
 BiometricsFingerprint::BiometricsFingerprint() : mClientCallback(nullptr) {
     sInstance = this;  // keep track of the most recent instance
     if (!openHal()) {
         LOG(ERROR) << "Can't open HAL module";
+    }
+
+    if (getBootloader().find("A505f") != std::string::npos) {
+        set(TSP_CMD_PATH, "set_fod_rect,430,1960,650,2180");
+    } else {
+        LOG(ERROR) << "Device is not an A505f , not setting set_fod_rect";
     }
 
     std::ifstream in("/sys/devices/virtual/fingerprint/fingerprint/position");
@@ -102,7 +111,6 @@ BiometricsFingerprint::BiometricsFingerprint() : mClientCallback(nullptr) {
 #endif
 
     set(TSP_CMD_PATH, "fod_enable,1,1,0");
-    set(TSP_CMD_PATH, "set_fod_rect,430,1960,650,2180");
 }
 
 BiometricsFingerprint::~BiometricsFingerprint() {
@@ -118,10 +126,9 @@ Return<bool> BiometricsFingerprint::isUdfps(uint32_t) {
 Return<void> BiometricsFingerprint::onFingerDown(uint32_t, uint32_t, float, float) {
     property_set("vendor.finger.down", "1");
 
-    std::thread([]() {
+    std::thread([this]() {
         std::this_thread::sleep_for(std::chrono::milliseconds(35));
-	BrightnessRestore = std::make_shared<TimedRestore>(B_PATH);
-	BrightnessRestore->set("331");
+        set(HBM_PATH, "331");
     }).detach();
 
     request(SEM_REQUEST_TOUCH_EVENT, FINGERPRINT_REQUEST_SESSION_OPEN);
@@ -132,7 +139,8 @@ Return<void> BiometricsFingerprint::onFingerDown(uint32_t, uint32_t, float, floa
 Return<void> BiometricsFingerprint::onFingerUp() {
     request(SEM_REQUEST_TOUCH_EVENT, FINGERPRINT_REQUEST_RESUME);
 
-    BrightnessRestore = nullptr;
+    set(HBM_PATH, "0");
+
     return Void();
 }
 
@@ -171,7 +179,6 @@ Return<RequestStatus> BiometricsFingerprint::ErrorFilter(int32_t error) {
 // Translate from errors returned by traditional HAL (see fingerprint.h) to
 // HIDL-compliant FingerprintError.
 FingerprintError BiometricsFingerprint::VendorErrorFilter(int32_t error, int32_t* vendorCode) {
-    *vendorCode = 0;
     switch (error) {
         case FINGERPRINT_ERROR_HW_UNAVAILABLE:
             return FingerprintError::ERROR_HW_UNAVAILABLE;
@@ -401,7 +408,7 @@ void BiometricsFingerprint::notify(const fingerprint_msg_t* msg) {
                 100 - msg->data.enroll.samples_remaining;
 #endif
             if(msg->data.enroll.samples_remaining == 0) {
-                BrightnessRestore = nullptr;
+                set(HBM_PATH, "0");
 #ifdef CALL_CANCEL_ON_ENROLL_COMPLETION
                 thisPtr->ss_fingerprint_cancel();
 #endif
@@ -434,7 +441,6 @@ void BiometricsFingerprint::notify(const fingerprint_msg_t* msg) {
                 const uint8_t* hat = reinterpret_cast<const uint8_t*>(&msg->data.authenticated.hat);
                 const hidl_vec<uint8_t> token(
                     std::vector<uint8_t>(hat, hat + sizeof(msg->data.authenticated.hat)));
-                set(HBM_PATH, "0");
                 if (!thisPtr->mClientCallback
                          ->onAuthenticated(devId, msg->data.authenticated.finger.fid,
                                            msg->data.authenticated.finger.gid, token)

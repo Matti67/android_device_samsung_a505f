@@ -8,6 +8,7 @@ cc_library_static {
     name: "libinit_a50",
     srcs: [
         "libinit_dalvik_heap.cpp",
+        "libinit_variant.cpp",
         "libinit_utils.cpp",
     ],
     whole_static_libs: ["libbase"],
@@ -20,6 +21,5 @@ cc_library_static {
     srcs: ["init_a50.cpp"],
     whole_static_libs: ["libinit_a50"],
     include_dirs: ["system/core/init"],
-    header_libs: ["libbase_headers"],
     recovery_available: true,
 }
