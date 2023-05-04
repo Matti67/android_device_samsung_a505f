@@ -43,6 +43,7 @@ allow init system_file:dir { relabelfrom };
 allow init system_file:file { relabelfrom };
 allow kernel system_data_file:file { read };
 allow vold vendor_file:dir { read };
+allow vold vendor_file:dir { open };
 
 allow vendor_init proc_swappiness:file rw_file_perms;
 
