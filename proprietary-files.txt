@@ -129,6 +129,12 @@ vendor/lib64/vendor.samsung_slsi.hardware.epic@1.0.so|a7a8a4aa1dfc3dbaaee839d580
 -vendor/bin/hw/vendor.samsung.hardware.gnss@2.0-service
 vendor/etc/init/vendor.samsung.hardware.gnss@2.0-service.rc
 -vendor/lib64/vendor.samsung.hardware.gnss@2.0.so
+vendor/bin/hw/gps.sh
+vendor/bin/hw/gpsd
+vendor/etc/init/init.gps.rc
+vendor/lib64/hw/android.hardware.gnss@2.1-impl.so
+vendor/lib64/hw/vendor.samsung.hardware.gnss@2.0-impl.so
+vendor/lib64/libwrappergps.so
 
 ## Graphics
 -vendor/lib/egl/libGLES_mali.so

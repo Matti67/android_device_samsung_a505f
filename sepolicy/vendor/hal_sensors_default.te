@@ -2,5 +2,6 @@ set_prop(hal_sensors_default, vendor_sensors_prop);
 
 
 allow hal_sensors_default hal_power_hwservice:hwservice_manager find;
+allow kernel sysfs_sensors_writable:dir { search };
 binder_call(hal_sensors_default, hal_power_default)
 binder_call(hal_sensors_default, system_server)

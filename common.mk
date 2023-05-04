@@ -58,8 +58,8 @@ PRODUCT_PACKAGES += \
 # Biometric Fingerprint
 ifeq ($(TARGET_HAS_FOD),true)
 PRODUCT_PACKAGES += \
-     android.hardware.biometrics.fingerprint@2.3-service-samsung.a50 \
-     SamsungUdfpsHandler.a50
+     android.hardware.biometrics.fingerprint@2.3-service-samsung.a505f \
+     SamsungUdfpsHandler.a505f
 else
 PRODUCT_PACKAGES += \
      android.hardware.biometrics.fingerprint@2.3-service.samsung
@@ -150,6 +150,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.keymaster@4.0-service.samsung \
     libkeymaster4_1support.vendor:64
+
+# Vibrator
+PRODUCT_PACKAGES += \
+    android.hardware.vibrator-service.samsung
 
 # Media
 PRODUCT_COPY_FILES += \
