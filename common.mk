@@ -55,15 +55,13 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     SamsungDAP
 
+# Doze
+PRODUCT_PACKAGES += \
+    SamsungDoze
+
 # Biometric Fingerprint
-ifeq ($(TARGET_HAS_FOD),true)
 PRODUCT_PACKAGES += \
-     android.hardware.biometrics.fingerprint@2.3-service-samsung.a505f \
-     SamsungUdfpsHandler.a505f
-else
-PRODUCT_PACKAGES += \
-     android.hardware.biometrics.fingerprint@2.3-service.samsung
-endif
+     android.hardware.biometrics.fingerprint@2.1-service.a50
 
 # Bluetooth
 PRODUCT_PACKAGES += \

@@ -44,6 +44,3 @@ ro.build.PDA                   u:object_r:exported_default_prop:s0
 persist.sys.sec_feature	       u:object_r:exported_default_prop:s0
 persist.sys.sec_feature2       u:object_r:exported_default_prop:s0
 persist.sys.sec_pcid	       u:object_r:exported_default_prop:s0
-
-# FPS
-vendor.finger.down	       u:object_r:vendor_udfps_prop:s0
