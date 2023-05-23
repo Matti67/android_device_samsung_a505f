@@ -61,8 +61,7 @@ PRODUCT_PACKAGES += \
 
 # Biometric Fingerprint
 PRODUCT_PACKAGES += \
-     android.hardware.biometrics.fingerprint@2.1-service.a50
-
+    android.hardware.biometrics.fingerprint@2.3-service.samsung
 # Bluetooth
 PRODUCT_PACKAGES += \
     android.hardware.bluetooth@1.0-impl:64 \

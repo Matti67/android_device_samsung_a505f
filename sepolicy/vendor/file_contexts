@@ -98,5 +98,5 @@
 ## Vendor
 /(vendor|system/vendor)/bin/hw/gps.sh        u:object_r:gpsd_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.samsung\.hardware\.gnss@[0-9]\.[0-9]-service                 u:object_r:hal_gnss_default_exec:s0
-/(vendor|system/vendor)/bin/hw/android\.hardware\.biometrics\.fingerprint@[0-9]\.[0-9]-service-samsung\.a50  u:object_r:hal_fingerprint_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.samsung_slsi\.hardware\.epic@[0-9]\.[0-9]-service	    u:object_r:hal_epic_default_exec:s0
+/(vendor|system/vendor)/bin/hw/vendor\.samsung\.hardware\.biometrics\.fingerprint@3\.0-service     u:object_r:hal_fingerprint_default_exec:s0
