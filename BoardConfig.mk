@@ -15,12 +15,6 @@
 
 DEVICE_PATH := device/samsung/a505f
 
-## Include path
-TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
-
-## Inherit from the proprietary configuration
-include vendor/samsung/a505f/BoardConfigVendor.mk
-
 ## Architecture
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
@@ -28,7 +22,6 @@ TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_ABI2 :=
 TARGET_CPU_VARIANT := cortex-a53
 
-## Architecture (Secondary)
 TARGET_2ND_ARCH := arm
 TARGET_2ND_ARCH_VARIANT := armv8-a
 TARGET_2ND_CPU_ABI := armeabi-v7a
@@ -40,10 +33,6 @@ TARGET_OTA_ASSERT_DEVICE := a505f,a50,a50dd
 
 ## APEX image
 DEXPREOPT_GENERATE_APEX_IMAGE := true
-
-## Bluetooth
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
-BOARD_HAVE_BLUETOOTH_SLSI := true
 
 ## Boot Image
 BOARD_BOOTIMG_HEADER_VERSION := 1
@@ -69,7 +58,12 @@ BUILD_BROKEN_VINTF_PRODUCT_COPY_FILES := true
 BUILD_BROKEN_DUP_RULES := true
 SELINUX_IGNORE_NEVERALLOWS := true
 
+## Bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
+BOARD_HAVE_BLUETOOTH_SLSI := true
+
 ## Display
+TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS := 0x2000U | 0x400000000LL
 TARGET_SCREEN_DENSITY := 420
 
 ## DTBO
@@ -85,12 +79,16 @@ TARGET_COPY_OUT_SYSTEM := system
 TARGET_COPY_OUT_VENDOR := vendor
 TARGET_USERIMAGES_USE_EXT4 := true
 
-# libinit
+## HIDL
+DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/manifest.xml
+DEVICE_MATRIX_FILE := $(DEVICE_PATH)/compatibility_matrix.xml
+
+## Init
 TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):init_a50
 TARGET_RECOVERY_DEVICE_MODULES := libinit_a50
 
-# Display
-TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS := 0x2000U | 0x400000000LL
+## Include path
+TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
 
 ## Kernel
 BOARD_KERNEL_IMAGE_NAME := Image
@@ -104,9 +102,6 @@ TARGET_KERNEL_LLVM_BINUTILS := false
 ## Keymaster
 TARGET_KEYMASTER_VARIANT := samsung
 
-DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/manifest.xml
-DEVICE_MATRIX_FILE := $(DEVICE_PATH)/compatibility_matrix.xml
-
 ## Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 57671680
 BOARD_CACHEIMAGE_PARTITION_SIZE := 419430400
@@ -116,7 +111,6 @@ BOARD_FLASH_BLOCK_SIZE := 4096
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 67633152
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 5557452800
 BOARD_VENDORIMAGE_PARTITION_SIZE := 838860800
-
 BOARD_ROOT_EXTRA_FOLDERS := efs
 
 ## Platform
@@ -144,11 +138,10 @@ VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 
 ## SELinux
 BOARD_SEPOLICY_TEE_FLAVOR := teegris
-include device/samsung_slsi/sepolicy/sepolicy.mk
-
 BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
 SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/public
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
+include device/samsung_slsi/sepolicy/sepolicy.mk
 
 ## Wi-Fi
 BOARD_WLAN_DEVICE                := slsi
@@ -161,3 +154,6 @@ WIFI_HIDL_UNIFIED_SUPPLICANT_SERVICE_RC_ENTRY := true
 WPA_SUPPLICANT_VERSION           := VER_0_8_X
 
 PRODUCT_CFI_INCLUDE_PATHS += hardware/samsung_slsi/scsc_wifibt/wpa_supplicant_lib
+
+## Inherit from the proprietary configuration
+include vendor/samsung/a505f/BoardConfigVendor.mk

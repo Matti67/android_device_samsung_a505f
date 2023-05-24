@@ -14,8 +14,12 @@
 # limitations under the License.
 #
 
-# Get non-open-source specific aspects
-$(call inherit-product, vendor/samsung/a505f/a505f-vendor.mk)
+# Setup dalvik vm configs
+$(call inherit-product, frameworks/native/build/phone-xhdpi-4096-dalvik-heap.mk)
+
+# Overlays
+DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
+PRODUCT_ENFORCE_RRO_TARGETS += *
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -30,14 +34,17 @@ PRODUCT_PACKAGES += \
     libtinyalsa \
     libtinycompress
 
-# Setup dalvik vm configs
-$(call inherit-product, frameworks/native/build/phone-xhdpi-4096-dalvik-heap.mk)
-
 # Audio-Legacy for Muting logspam
 PRODUCT_PACKAGES += \
     android.hardware.audio@2.0-impl \
     android.hardware.audio@4.0-impl \
     android.hardware.audio@2.0-service
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/audio/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml \
+    $(LOCAL_PATH)/configs/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml \
+    $(LOCAL_PATH)/configs/audio/audio_policy_volumes.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_volumes.xml \
+    $(LOCAL_PATH)/configs/audio/mixer_gains.xml:$(TARGET_COPY_OUT_VENDOR)/etc/mixer_gains.xml
 
 PRODUCT_COPY_FILES += \
     frameworks/av/services/audiopolicy/config/a2dp_in_audio_policy_configuration_7_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/a2dp_in_audio_policy_configuration_7_0.xml \
@@ -46,23 +53,12 @@ PRODUCT_COPY_FILES += \
     frameworks/av/services/audiopolicy/enginedefault/config/example/phone/audio_policy_engine_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_engine_configuration.xml \
     frameworks/av/services/audiopolicy/enginedefault/config/example/phone/audio_policy_engine_default_stream_volumes.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_engine_default_stream_volumes.xml \
     frameworks/av/services/audiopolicy/enginedefault/config/example/phone/audio_policy_engine_product_strategies.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_engine_product_strategies.xml \
-    frameworks/av/services/audiopolicy/enginedefault/config/example/phone/audio_policy_engine_stream_volumes.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_engine_stream_volumes.xml \
-    $(LOCAL_PATH)/configs/audio/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml \
-    $(LOCAL_PATH)/configs/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml \
-    $(LOCAL_PATH)/configs/audio/audio_policy_volumes.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_volumes.xml \
-    $(LOCAL_PATH)/configs/audio/mixer_gains.xml:$(TARGET_COPY_OUT_VENDOR)/etc/mixer_gains.xml
-
-# DAP
-PRODUCT_PACKAGES += \
-    SamsungDAP
-
-# Doze
-PRODUCT_PACKAGES += \
-    SamsungDoze
+    frameworks/av/services/audiopolicy/enginedefault/config/example/phone/audio_policy_engine_stream_volumes.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_engine_stream_volumes.xml
 
 # Biometric Fingerprint
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.3-service.samsung
+
 # Bluetooth
 PRODUCT_PACKAGES += \
     android.hardware.bluetooth@1.0-impl:64 \
@@ -70,22 +66,27 @@ PRODUCT_PACKAGES += \
     libbt-vendor:64
 
 PRODUCT_COPY_FILES += \
-    hardware/samsung_slsi/libbt/conf/bt_did.conf:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth/bt_did.conf \
-    hardware/samsung_slsi/libbt/conf/bt_vendor.conf:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth/bt_vendor.conf \
     $(LOCAL_PATH)/configs/sysconfig/component-overrides.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sysconfig/component-overrides.xml
+
+PRODUCT_COPY_FILES += \
+    hardware/samsung_slsi/libbt/conf/bt_did.conf:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth/bt_did.conf \
+    hardware/samsung_slsi/libbt/conf/bt_vendor.conf:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth/bt_vendor.conf
+
+# Charger
+PRODUCT_PACKAGES += \
+     charger_res_images_vendor
 
 # Camera
 PRODUCT_PACKAGES += \
-    android.hardware.camera.provider@2.5-service_64 \
-    libsensorndkbridge \
+    android.hardware.camera.provider@2.5-service_64
 
 # ConfigStore
 PRODUCT_PACKAGES += \
     disable_configstore
 
-# Charger
+# DAP
 PRODUCT_PACKAGES += \
-     charger_res_images_vendor
+    SamsungDAP
 
 # Display
 PRODUCT_PACKAGES += \
@@ -93,6 +94,10 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.allocator@2.0-service \
     android.hardware.graphics.composer@2.2-service \
     android.hardware.graphics.mapper@2.0-impl-2.1
+
+# Doze
+PRODUCT_PACKAGES += \
+    SamsungDoze
 
 # DRM
 PRODUCT_PACKAGES += \
@@ -130,7 +135,7 @@ PRODUCT_PACKAGES += \
    libhwbinder \
    libhwbinder.vendor
 
-# init
+# Init
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/init/fstab.exynos9610:$(TARGET_COPY_OUT_RAMDISK)/fstab.exynos9610 \
     $(LOCAL_PATH)/configs/init/fstab.exynos9610:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.exynos9610 \
@@ -150,9 +155,9 @@ PRODUCT_PACKAGES += \
     android.hardware.keymaster@4.0-service.samsung \
     libkeymaster4_1support.vendor:64
 
-# Vibrator
+# Lights
 PRODUCT_PACKAGES += \
-    android.hardware.vibrator-service.samsung
+    android.hardware.light-service.samsung
 
 # Media
 PRODUCT_COPY_FILES += \
@@ -163,10 +168,6 @@ PRODUCT_COPY_FILES += \
 # Memtrack
 PRODUCT_PACKAGES += \
     android.hardware.memtrack-service.samsung-mali
-
-# Overlays
-DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
-PRODUCT_ENFORCE_RRO_TARGETS += *
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -222,7 +223,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/linker/public.libraries.txt:$(TARGET_COPY_OUT_VENDOR)/etc/public.libraries.txt
 
-# Ril
+# RIL
 PRODUCT_PACKAGES += \
     android.hardware.radio@1.4.vendor \
     android.hardware.radio.config@1.2.vendor \
@@ -261,9 +262,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.usb-service.samsung
 
-# Lights
+# Vibrator
 PRODUCT_PACKAGES += \
-    android.hardware.light-service.samsung
+    android.hardware.vibrator-service.samsung
 
 # VNDK
 PRODUCT_PACKAGES += \
@@ -280,3 +281,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \
     $(LOCAL_PATH)/configs/wifi/wpa_supplicant.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant.conf \
     $(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf
+    
+# Get non-open-source specific aspects
+$(call inherit-product, vendor/samsung/a505f/a505f-vendor.mk)
