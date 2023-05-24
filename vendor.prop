@@ -51,6 +51,11 @@ ro.product_ship=true
 # If not set or set to 0, OMX will only use BT.601 colorspace.
 ro.vendor.cscsupported=1
 
+## RIL
+ro.carrier=unknown
+ro.radio.noril=no
+vendor.rild.libpath=/vendor/lib64/libsec-ril.so
+
 ## SoC
 ro.soc.manufacturer=Samsung
 ro.soc.model=Exynos 9611

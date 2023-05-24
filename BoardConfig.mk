@@ -13,13 +13,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-COMMON_PATH := device/samsung/a50-common
+DEVICE_PATH := device/samsung/a505f
 
 ## Include path
-TARGET_SPECIFIC_HEADER_PATH := $(COMMON_PATH)/include
+TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
 
-## Inherit proprietary vendor configuartion
-include vendor/samsung/a50-common/BoardConfigVendor.mk
+## Inherit from the proprietary configuration
+include vendor/samsung/a505f/BoardConfigVendor.mk
 
 ## Architecture
 TARGET_ARCH := arm64
@@ -35,8 +35,14 @@ TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a53
 
+# Assert
+TARGET_OTA_ASSERT_DEVICE := a505f,a50,a50dd
+
+## APEX image
+DEXPREOPT_GENERATE_APEX_IMAGE := true
+
 ## Bluetooth
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(COMMON_PATH)/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
 BOARD_HAVE_BLUETOOTH_SLSI := true
 
 ## Boot Image
@@ -68,7 +74,7 @@ TARGET_SCREEN_DENSITY := 420
 
 ## DTBO
 BOARD_KERNEL_SEPARATED_DTBO := true
-BOARD_DTBO_CFG := $(COMMON_PATH)/configs/kernel/$(TARGET_DEVICE).cfg
+BOARD_DTBO_CFG := $(DEVICE_PATH)/configs/kernel/$(TARGET_DEVICE).cfg
 
 ## Filesystem
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
@@ -80,7 +86,7 @@ TARGET_COPY_OUT_VENDOR := vendor
 TARGET_USERIMAGES_USE_EXT4 := true
 
 # libinit
-TARGET_INIT_VENDOR_LIB := //$(COMMON_PATH):init_a50
+TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):init_a50
 TARGET_RECOVERY_DEVICE_MODULES := libinit_a50
 
 # Display
@@ -98,8 +104,8 @@ TARGET_KERNEL_LLVM_BINUTILS := false
 ## Keymaster
 TARGET_KEYMASTER_VARIANT := samsung
 
-DEVICE_MANIFEST_FILE += $(COMMON_PATH)/manifest.xml
-DEVICE_MATRIX_FILE := $(COMMON_PATH)/compatibility_matrix.xml
+DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/manifest.xml
+DEVICE_MATRIX_FILE := $(DEVICE_PATH)/compatibility_matrix.xml
 
 ## Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 57671680
@@ -120,15 +126,15 @@ TARGET_BOOTLOADER_BOARD_NAME := exynos9610
 TARGET_SOC := exynos9610
 
 ## Properties
-TARGET_VENDOR_PROP += $(COMMON_PATH)/vendor.prop
+TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
 
 ## Recovery
 BOARD_INCLUDE_RECOVERY_DTBO := true
-TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/configs/init/fstab.exynos9610
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/configs/init/fstab.exynos9610
 TARGET_RECOVERY_PIXEL_FORMAT := "ABGR_8888"
 
 ## Releasetools
-TARGET_RELEASETOOLS_EXTENSIONS := $(COMMON_PATH)/releasetools
+TARGET_RELEASETOOLS_EXTENSIONS := $(DEVICE_PATH)/releasetools
 
 ## RIL
 ENABLE_VENDOR_RIL_SERVICE := true
@@ -140,9 +146,9 @@ VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 BOARD_SEPOLICY_TEE_FLAVOR := teegris
 include device/samsung_slsi/sepolicy/sepolicy.mk
 
-BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
-SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/public
-SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/private
+BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
+SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/public
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
 
 ## Wi-Fi
 BOARD_WLAN_DEVICE                := slsi

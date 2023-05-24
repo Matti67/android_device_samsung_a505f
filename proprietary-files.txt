@@ -1,8 +1,9 @@
-# Common proprietary files - from Samsung package version A505FDDU9CVC2, unless pinned
+# Device proprietary files - from Samsung package version A505FDDU9CVC2, unless pinned
 
 ## Audio
 vendor/etc/default_volume_tables.xml
 vendor/etc/dolby/dax-default.xml
+vendor/etc/floating_feature.xml
 vendor/etc/mixer_paths.xml
 vendor/etc/usb_audio_policy_configuration.xml
 vendor/lib/hw/audio.primary.exynos9610.so
@@ -25,6 +26,7 @@ vendor/lib/libsecaudiocoreutils.so
 vendor/lib/libsecaudioinfo.so
 vendor/lib/lib_SoundBooster_ver1000.so
 vendor/lib/soundfx/libaudioeffectoffload.so
+vendor/lib/soundfx/libswdap.so
 vendor/lib/soundfx/libsamsungSoundbooster_plus.so
 vendor/lib64/libfloatingfeature.so
 vendor/lib64/libsecaudioinfo.so
@@ -38,6 +40,8 @@ vendor/firmware/APBiBF_AUDIO_SLSI.bin
 vendor/firmware/AP_AUDIO_SLSI.bin
 vendor/firmware/SoundBoosterParam.bin
 vendor/firmware/calliope_iva.bin
+vendor/firmware/calliope_dram.bin
+vendor/firmware/calliope_sram.bin
 vendor/firmware/dax_param.bin
 
 ## Biometric Fingerprint
@@ -57,6 +61,9 @@ vendor/lib64/libsynaFpSensorTestNwd.so
 ## Bluetooth
 system/lib64/libaptX_encoder.so
 
+## Bluetooth Firmware
+vendor/etc/wifi/mx140_bt.hcf
+
 ## Camera
 vendor/lib/hw/camera.exynos9610.so
 vendor/lib64/hw/camera.exynos9610.so
@@ -66,6 +73,7 @@ vendor/lib/libSEF.quram.so
 vendor/lib/libacryl.so
 vendor/lib/libacryl_plugin_slsi_hdr10.so
 vendor/lib/libcsc.so
+vendor/lib/libexynoscamera3.so
 vendor/lib/libgiantmscl.so
 vendor/lib/libhwjpeg.so
 vendor/lib/libsensorlistener.so
@@ -73,6 +81,7 @@ vendor/lib/libuniapi.so
 vendor/lib/libuniplugin.so
 vendor/lib64/libSEF.quram.so
 vendor/lib64/libcsc.so
+vendor/lib64/libexynoscamera3.so
 vendor/lib64/libgiantmscl.so
 vendor/lib64/libhwjpeg.so
 vendor/lib64/libsensorlistener.so
@@ -86,6 +95,20 @@ vendor/firmware/mfc_fw.bin
 vendor/etc/media_codecs.xml
 vendor/etc/media_codecs_performance.xml
 vendor/etc/media_profiles_V1_0.xml
+
+## Fingeprint
+vendor/lib/libbauthserver.so
+vendor/lib/libbauthtzcommon.so
+vendor/lib/libegis_fp_normal_sensor_test.so
+vendor/lib/libgf_in_system_lib.so
+vendor/lib/libqfp_sensortest.so
+vendor/lib/libsynaFpSensorTestNwd.so
+vendor/lib64/libbauthserver.so
+vendor/lib64/libbauthtzcommon.so
+vendor/lib64/libegis_fp_normal_sensor_test.so
+vendor/lib64/libgf_in_system_lib.so
+vendor/lib64/libqfp_sensortest.so
+vendor/lib64/libsynaFpSensorTestNwd.so
 
 ## Firmware
 vendor/firmware/CC_DRAM_CODE_FLASH.bin
@@ -126,12 +149,12 @@ vendor/lib64/hw/vendor.samsung_slsi.hardware.epic@1.0-impl.so|a70663f57ed1acd3e9
 vendor/lib64/vendor.samsung_slsi.hardware.epic@1.0.so|a7a8a4aa1dfc3dbaaee839d580cc1772d95a2bbe
 
 ## GPS
+vendor/bin/hw/gps.sh
+-vendor/bin/hw/gpsd
 -vendor/bin/hw/vendor.samsung.hardware.gnss@2.0-service
+vendor/etc/init/init.gps.rc
 vendor/etc/init/vendor.samsung.hardware.gnss@2.0-service.rc
 -vendor/lib64/vendor.samsung.hardware.gnss@2.0.so
-vendor/bin/hw/gps.sh
-vendor/bin/hw/gpsd
-vendor/etc/init/init.gps.rc
 vendor/lib64/hw/android.hardware.gnss@2.1-impl.so
 vendor/lib64/hw/vendor.samsung.hardware.gnss@2.0-impl.so
 vendor/lib64/libwrappergps.so
@@ -210,6 +233,10 @@ vendor/lib64/omx/libOMX.Exynos.WMV.Decoder.so
 vendor/firmware/fimc_is_lib.bin
 vendor/firmware/fimc_is_rta.bin
 
+# rilx2 - from gta4xlwifi
+-vendor/lib64/vendor.samsung.hardware.radio@2.2.so|99cd4ef1a024fe47ccaabe5d41311ea293f06cb2
+-vendor/lib64/vendor.samsung.hardware.radio.bridge@2.1.so|dda313a967a6397cdda9a11eed9006b5c4574171
+
 ## RIL
 vendor/bin/cbd
 vendor/lib/libsecril-client.so
@@ -257,6 +284,12 @@ vendor/lib64/libteecl.so
 vendor/lib64/libuuid.so
 
 ## TEEGRIS Firmware
+vendor/tee/00000000-0000-0000-0000-00000000dead
+vendor/tee/00000000-0000-0000-0000-000000534b4d
+vendor/tee/00000000-0000-0000-0000-0053545354ab
+vendor/tee/00000000-0000-0000-0000-46494e474552
+vendor/tee/00000000-0000-0000-0000-4b45594d5354
+vendor/tee/00000000-0000-0000-0000-505256544545
 vendor/tee/00000000-0000-0000-0000-000000010081
 vendor/tee/00000000-0000-0000-0000-000000020081
 vendor/tee/00000000-0000-0000-0000-000046495645

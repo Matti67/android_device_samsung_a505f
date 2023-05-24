@@ -20,7 +20,7 @@ import os
 import sys
 from hashlib import sha1
 
-device='a50-common'
+device='a505f'
 vendor='samsung'
 
 with open('proprietary-files.txt', 'r') as f:
