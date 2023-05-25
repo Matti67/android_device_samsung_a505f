@@ -19,7 +19,7 @@ LOCAL_PATH := $(call my-dir)
 ifneq ($(filter a505f, $(TARGET_DEVICE)),)
 include $(call all-subdir-makefiles,$(LOCAL_PATH))
 
-include $(COMMON_PATH)/AndroidBoard.mk
+include $(DEVICE_PATH)/AndroidBoard.mk
 
 include $(CLEAR_VARS)
 
