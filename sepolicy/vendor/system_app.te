@@ -14,7 +14,5 @@ allow system_app hal_power_default:binder call;
 allow init system_app_data_file:dir { getattr };
 
 allow init system_app_data_file:dir { getattr };
-allow init app_data_file:dir { getattr };
-allow init privapp_data_file:dir { getattr };
 allow init seapp_contexts_file:file { read };
 allow init shell_data_file:dir { relabelfrom };
