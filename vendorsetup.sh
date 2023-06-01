@@ -2,7 +2,7 @@
 
 # Vendor tree Unified
 echo "Cloning Vendor Tree"
-git clone https://github.com/GiovanYCringe/android_vendor_samsung_a505f vendor/samsung/a505f
+git clone https://github.com/GiovanYCringe-Experiments/android_vendor_samsung_a505f vendor/samsung/a505f
 echo ""
 
 # Dependencies
