@@ -95,9 +95,6 @@
         <item>"evdo:4094,87380,524288,4096,16384,262144"</item>
     </string-array>
 
-    <!-- FP trustlet limits the number to 4. -->
-    <integer name="config_fingerprintMaxTemplatesPerUser">4</integer>
-    
     <!-- Remote server that can provide NTP responses. -->
     <string translatable="false" name="config_ntpServer">1.android.pool.ntp.org</string>
 
