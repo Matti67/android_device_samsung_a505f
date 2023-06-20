@@ -1,3 +1,8 @@
+# enCrypto
+ro.crypto.volume.options=aes-256-xts
+ro.crypto.allow_encrypt_override=false
+ro.crypto.volume.filenames_mode=aes-256-cts
+
 ## Audio
 audio.offload.min.duration.secs=30
 aaudio.mmap_policy=2
