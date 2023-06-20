@@ -24,9 +24,6 @@ $(call inherit-product, device/samsung/a505f/device.mk)
 ## Inherit some common lineage stuff
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
-## Set Target
-TARGET_HAS_FOD := true
-
 ## Device identifier, this must come after all inclusions
 PRODUCT_DEVICE := a505f
 PRODUCT_NAME := lineage_a505f
@@ -37,10 +34,13 @@ PRODUCT_SHIPPING_API_LEVEL := 28
 
 PRODUCT_GMS_CLIENTID_BASE := android-samsung
 
+PRODUCT_SYSTEM_NAME := Galaxy A50
+PRODUCT_SYSTEM_DEVICE := Galaxy A50
+
 ## Use the latest CTS approved build identifiers
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRODUCT_DEVICE=a50 \
-    PRODUCT_NAME=a50dd \
-    PRIVATE_BUILD_DESC="a50dd-user 11 RP1A.200720.012 A505FDDS9CUK1 release-keys"
+    PRODUCT_DEVICE=$(PRODUCT_SYSTEM_DEVICE) \
+    PRODUCT_NAME=$(PRODUCT_SYSTEM_NAME) \
+    PRIVATE_BUILD_DESC="OnePlus9-user 13 TP1A.220905.001 R.107ea31_1-1947f release-keys"
 
-BUILD_FINGERPRINT := samsung/a50dd/a50:11/RP1A.200720.012/A505FDDS9CUK1:user/release-keys
+BUILD_FINGERPRINT := OnePlus/OnePlus9/OnePlus9:13/TP1A.220905.001/R.107ea31_1-1947f:user/release-keys

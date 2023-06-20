@@ -72,9 +72,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
      charger_res_images_vendor
 
+
 # Camera
 PRODUCT_PACKAGES += \
-    android.hardware.camera.provider@2.5-service_64
+    android.hardware.camera.provider@2.4-impl \
+    android.hardware.camera.provider@2.4-service_64
 
 # ConfigStore
 PRODUCT_PACKAGES += \
@@ -144,8 +146,9 @@ PRODUCT_COPY_FILES += \
 
 # Keymaster
 PRODUCT_PACKAGES += \
-    android.hardware.keymaster@4.0-service.samsung \
-    libkeymaster4_1support.vendor:64
+    android.hardware.keymaster@3.0.vendor \
+    android.hardware.keymaster@3.0-impl \
+    android.hardware.keymaster@3.0-service
 
 # Lights
 PRODUCT_PACKAGES += \
