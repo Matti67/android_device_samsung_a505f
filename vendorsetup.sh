@@ -22,6 +22,6 @@ echo ""
 
 # Kernel
 echo "Cloning Clang + Kernel"
-git clone https://gitlab.com/ThankYouMario/android_prebuilts_clang-standalone -b 13 prebuilts/clang/host/linux-x86/clang-r433403b;
+git clone https://gitlab.com/ThankYouMario/android_prebuilts_clang-standalone -b 11 prebuilts/clang/host/linux-x86/clang-r399163b1;
 git clone https://github.com/GiovanYCringe/kernel_a50 kernel/samsung/a50
 echo ""
