@@ -2,13 +2,14 @@
 
 # Vendor tree Unified
 echo "Cloning Vendor Tree"
-git clone https://github.com/GiovanYCringe-Experiments/android_vendor_samsung_a505f vendor/samsung/a505f
+git clone https://github.com/GiovanYCringe-Experiments/android_vendor_samsung_a505f vendor/samsung/a505f 
 echo ""
 
 # Dependencies
 echo "Cloning Dependencies Samsung"
 rm -rf hardware/samsung;
 git clone -b thirteen --single-branch https://github.com/PixelExperience/hardware_samsung hardware/samsung;
+git clone https://github.com/LineageOS/android_hardware_samsung_nfc hardware/samsung/nfc
 git clone -b lineage-20 --single-branch https://github.com/LineageOS/android_hardware_samsung_slsi_libbt hardware/samsung_slsi/libbt;
 git clone -b lineage-20 --single-branch https://github.com/LineageOS/android_hardware_samsung_slsi_scsc_wifibt_wifi_hal hardware/samsung_slsi/scsc_wifibt/wifi_hal;
 git clone -b lineage-20 --single-branch https://github.com/LineageOS/android_hardware_samsung_slsi_scsc_wifibt_wpa_supplicant_lib hardware/samsung_slsi/scsc_wifibt/wpa_supplicant_lib;
