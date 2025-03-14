@@ -7,7 +7,7 @@ echo ""
 
 # Dependencies
 echo "Cloning Dependencies Samsung"
-rm -rf hardware/samsung;
+#rm -rf hardware/samsung;
 #git clone -b thirteen --single-branch https://github.com/PixelExperience/hardware_samsung hardware/samsung;
 #git clone https://github.com/LineageOS/android_hardware_samsung_nfc hardware/samsung/nfc
 #git clone -b lineage-20 --single-branch https://github.com/LineageOS/android_hardware_samsung_slsi_libbt hardware/samsung_slsi/libbt;
