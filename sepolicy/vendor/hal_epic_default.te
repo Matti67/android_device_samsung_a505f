@@ -1,5 +1,9 @@
 type hal_epic_default, domain;
 type hal_epic_default_exec, exec_type, vendor_file_type, file_type;
+
+# Add this line to declare the hwservice type
+type hal_epic_hwservice, hwservice_manager_type;
+
 init_daemon_domain(hal_epic_default)
 
 vndbinder_use(hal_epic_default)
