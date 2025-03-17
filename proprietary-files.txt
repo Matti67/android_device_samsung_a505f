@@ -343,3 +343,7 @@ vendor/etc/wifi/mx140_wlan_t.hcf
 vendor/etc/wifi/mx140_wlan_t_sw.hcf
 vendor/etc/wifi/platform.txt
 vendor/etc/wifi/slsi_reg_database.bin
+
+## ueventd.rc and init.udfps.rc
+etc/init/init.udfps.rc:vendor/etc/init/init.udfps.rc
+etc/ueventd.rc:vendor/etc/ueventd.rc
