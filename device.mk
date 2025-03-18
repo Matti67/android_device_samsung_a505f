@@ -145,8 +145,7 @@ PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/configs/init/init.exynos9610.usb.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.exynos9610.usb.rc \
     $(DEVICE_PATH)/configs/init/init.recovery.exynos9610.rc:$(TARGET_COPY_OUT_RECOVERY)/root/init.recovery.exynos9610.rc \
     $(DEVICE_PATH)/configs/init/init.samsung.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.samsung.rc \
-    $(DEVICE_PATH)/configs/init/ueventd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/ueventd.rc
-    #$(DEVICE_PATH)/configs/init/fingerprint.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/fingerprint.rc \
+    $(DEVICE_PATH)/configs/init/ueventd.rc:$(TARGET_COPY_OUT_VENDOR)/ueventd.rc
     
 
 # Keylayout
